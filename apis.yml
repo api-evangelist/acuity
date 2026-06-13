@@ -1,0 +1,77 @@
+aid: acuity
+name: Acuity Scheduling
+description: >
+  Acuity Scheduling is an online appointment scheduling platform that enables
+  businesses and independent professionals to automate their booking workflows.
+  The platform provides a REST API for managing appointment types, client
+  availability, bookings, and client records. Developers can integrate
+  scheduling functionality into applications using HTTP Basic Auth or OAuth2,
+  with support for webhooks to receive real-time event notifications. Acuity is
+  a subsidiary of Squarespace and offers SDKs for Node.js and PHP alongside its
+  embeddable client scheduler widget.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/acuity/refs/heads/main/apis.yml
+created: "2026-06-13"
+modified: "2026-06-13"
+specificationVersion: "0.19"
+tags:
+  - Scheduling
+  - Appointments
+  - Calendar
+  - Booking
+  - HIPAA
+  - Webhooks
+apis:
+  - aid: acuity:acuity-scheduling-api
+    name: Acuity Scheduling API
+    description: >
+      The Acuity Scheduling REST API allows developers to programmatically manage
+      appointments, appointment types, availability, client records, calendar
+      integrations, packages, gift certificates, and forms. Authentication is
+      supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2
+      for multi-account integrations. The API base URL is
+      https://acuityscheduling.com/api/v1/ and all responses are JSON. Webhooks
+      allow receiving real-time push notifications for appointment lifecycle
+      events.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developers.acuityscheduling.com/
+    baseURL: https://acuityscheduling.com/api/v1/
+    tags:
+      - Scheduling
+      - Appointments
+      - Calendar
+      - Booking
+      - Webhooks
+      - OAuth2
+    properties:
+      - type: Documentation
+        url: https://developers.acuityscheduling.com/
+      - type: OpenAPI
+        url: https://developers.acuityscheduling.com/llms.txt
+common:
+  - type: Website
+    url: https://acuityscheduling.com/
+  - type: Documentation
+    url: https://developers.acuityscheduling.com/
+  - type: GitHubOrg
+    url: https://github.com/AcuityScheduling
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/acuity-scheduling
+  - type: Blog
+    url: https://www.acuityscheduling.com/learn
+  - type: Pricing
+    url: https://acuityscheduling.com/signup.php
+  - type: StatusPage
+    url: https://status.acuityscheduling.com/
+  - type: X
+    url: https://twitter.com/acuityschedulin
+  - type: Plans
+    url: plans/acuity-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/acuity-rate-limits.yml
+  - type: FinOps
+    url: finops/acuity-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

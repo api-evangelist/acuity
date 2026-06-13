@@ -1,0 +1,56 @@
+name: Acuity Scheduling API Rate Limits
+description: Rate limiting policies for the Acuity Scheduling REST API
+url: https://developers.acuityscheduling.com/
+version: "0.1"
+specificationVersion: "0.1"
+created: "2026-06-13"
+modified: "2026-06-13"
+
+rateLimits:
+  - name: Per-IP Request Rate
+    description: >
+      The Acuity Scheduling API enforces a limit of 10 requests per second per
+      IP address. Exceeding this limit results in an HTTP 429 Too Many Requests
+      response. Clients should implement exponential backoff when encountering
+      429 errors.
+    limit: 10
+    window: second
+    scope: ip
+    errorCode: 429
+    errorMessage: Too Many Requests
+
+  - name: Concurrent Connections
+    description: >
+      A maximum of 20 concurrent connections are permitted per account. This
+      limit applies to simultaneous open HTTP connections to the API. Clients
+      should use connection pooling and avoid opening more than 20 parallel
+      requests at a time.
+    limit: 20
+    window: concurrent
+    scope: account
+
+  - name: Webhooks per Account
+    description: >
+      Each Acuity Scheduling account may register a maximum of 25 webhooks.
+      Failed webhook delivery is retried with exponential backoff over a 24-hour
+      period.
+    limit: 25
+    window: account
+    scope: account
+    notes: >
+      Webhook payloads are POST requests with form-encoded data. Each webhook
+      is cryptographically signed using the account API key for verification.
+
+headers:
+  - name: Retry-After
+    description: >
+      When a 429 Too Many Requests error is returned, clients should wait for
+      the duration indicated by the Retry-After header (if present) before
+      retrying the request.
+
+bestPractices:
+  - Implement exponential backoff when receiving 429 responses
+  - Use server-side requests only; never call the API from client-side code
+  - All API requests must use HTTPS
+  - Store credentials securely server-side and never expose them client-side
+  - Avoid polling; use webhooks to receive real-time event notifications

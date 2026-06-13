@@ -1,0 +1,85 @@
+name: Acuity Scheduling Plans & Pricing
+description: Pricing tiers for Acuity Scheduling appointment scheduling platform
+url: https://acuityscheduling.com/signup.php
+version: "0.1"
+specificationVersion: "0.1"
+created: "2026-06-13"
+modified: "2026-06-13"
+
+plans:
+  - name: Starter
+    description: >
+      Entry-level plan for solo practitioners and small businesses with a single
+      calendar. Includes core scheduling, payment processing, email reminders,
+      and custom client intake forms.
+    monthlyPrice: 20.00
+    annualPrice: 16.00
+    currency: USD
+    billingPeriod: month
+    annualDiscount: "20%"
+    features:
+      - 1 calendar
+      - Unlimited services and appointments
+      - Payments via Stripe, Square, and PayPal
+      - Email reminders
+      - Custom client intake forms
+      - Automatic time zone conversion
+      - Google Meet, Zoom, and GoToMeeting integrations
+      - 7-day free trial (no credit card required)
+    apiAccess: false
+
+  - name: Standard
+    description: >
+      Mid-tier plan for growing businesses managing multiple staff or locations.
+      Adds SMS text reminders, memberships, packages, and gift certificates on
+      top of all Starter features.
+    monthlyPrice: 34.00
+    annualPrice: 27.00
+    currency: USD
+    billingPeriod: month
+    annualDiscount: "20%"
+    features:
+      - Up to 6 calendars
+      - All Starter features
+      - SMS text reminders
+      - Sell memberships and packages
+      - Sell gift certificates
+      - 7-day free trial (no credit card required)
+    apiAccess: false
+
+  - name: Premium
+    description: >
+      Top-tier plan for large organizations requiring custom API access, HIPAA
+      compliance, advanced multi-location scheduling, and the ability to remove
+      Acuity branding from scheduling pages.
+    monthlyPrice: 61.00
+    annualPrice: 49.00
+    currency: USD
+    billingPeriod: month
+    annualDiscount: "20%"
+    features:
+      - Up to 36 calendars
+      - All Standard features
+      - Custom API and CSS access
+      - Sign BAA for HIPAA compliance
+      - Hide Acuity logo on scheduling page
+      - Multiple time zones for staff and locations
+      - 7-day free trial (no credit card required)
+    apiAccess: true
+
+  - name: Enterprise
+    description: >
+      Custom plan for large organizations requiring unlimited calendars, advanced
+      integrations, and dedicated support. Pricing available on request.
+    monthlyPrice: null
+    annualPrice: null
+    currency: USD
+    billingPeriod: custom
+    features:
+      - Unlimited calendars
+      - All Premium features
+      - Dedicated support
+      - Custom integrations
+      - Advanced SLA
+    apiAccess: true
+    contactSales: true

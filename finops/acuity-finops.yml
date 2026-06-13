@@ -1,0 +1,118 @@
+name: Acuity Scheduling FinOps
+description: >
+  FinOps Framework 1.0 FOCUS-aligned cost and usage data model for Acuity
+  Scheduling subscription plans. Acuity Scheduling uses a flat monthly or
+  annual SaaS subscription model; there are no API call-based metered charges.
+  Cost optimization focuses on right-sizing the calendar count to the active
+  plan tier and choosing annual billing to realize the 20% discount.
+url: https://acuityscheduling.com/signup.php
+version: "1.0"
+specificationVersion: "1.0"
+created: "2026-06-13"
+modified: "2026-06-13"
+
+provider: Acuity Scheduling
+serviceModel: SaaS
+pricingModel: flat-rate-subscription
+meteringModel: none
+billingGranularity: month
+
+focusColumns:
+  - name: BillingAccountId
+    description: Acuity Scheduling account identifier
+    type: string
+  - name: ServiceName
+    value: Acuity Scheduling
+    type: string
+  - name: ServiceCategory
+    value: Business Applications / Scheduling
+    type: string
+  - name: ChargeType
+    value: Usage
+    type: string
+  - name: ChargeFrequency
+    value: Recurring
+    type: string
+  - name: PricingUnit
+    value: month
+    type: string
+  - name: BillingCurrency
+    value: USD
+    type: string
+  - name: ListUnitPrice
+    description: Monthly list price per plan (see plans below)
+    type: number
+  - name: EffectiveUnitPrice
+    description: >
+      Effective monthly price after annual discount (if applicable). Annual
+      billing reduces the effective monthly cost by approximately 20%.
+    type: number
+  - name: BilledCost
+    description: Total amount charged for the billing period
+    type: number
+  - name: Tags
+    description: Cost allocation tags such as team, project, or cost center
+    type: object
+
+costDrivers:
+  - name: Plan Tier
+    description: >
+      The primary cost driver is the selected plan tier (Starter, Standard,
+      Premium, or Enterprise). Each tier has a fixed monthly price regardless
+      of appointment volume, API call volume, or number of end-user clients.
+  - name: Billing Cadence
+    description: >
+      Choosing annual billing versus monthly billing reduces the effective
+      monthly cost by approximately 20% across all plan tiers.
+  - name: Calendar Count
+    description: >
+      The number of calendars (staff members or locations) determines the
+      minimum required plan tier. Starter supports 1 calendar, Standard up to
+      6, and Premium up to 36. Over-provisioning calendars beyond actual use
+      results in unnecessary plan tier costs.
+
+optimizationRecommendations:
+  - name: Annual vs Monthly Billing
+    description: >
+      Switch to annual billing to save approximately 20% on the monthly rate.
+      For Starter this is $4/month ($48/year), Standard $7/month ($84/year),
+      and Premium $12/month ($144/year).
+    estimatedSavingsPct: 20
+
+  - name: Right-Size Calendar Count
+    description: >
+      Audit active calendar usage quarterly. Downgrade from Premium to Standard
+      if fewer than 7 calendars are actively used, or from Standard to Starter
+      if only 1 calendar is needed.
+
+  - name: API Access Requirement
+    description: >
+      Custom API access requires the Premium plan ($49-$61/month). Teams
+      building lightweight integrations should evaluate whether standard webhooks
+      (available on all plans) are sufficient before upgrading to Premium solely
+      for API access.
+
+  - name: HIPAA BAA
+    description: >
+      HIPAA BAA signing is included with Premium. Organizations not subject to
+      HIPAA requirements should not pay the Premium premium solely for this
+      feature.
+
+planPricing:
+  - plan: Starter
+    listMonthly: 20.00
+    effectiveMonthlyAnnual: 16.00
+    annualTotal: 192.00
+  - plan: Standard
+    listMonthly: 34.00
+    effectiveMonthlyAnnual: 27.00
+    annualTotal: 324.00
+  - plan: Premium
+    listMonthly: 61.00
+    effectiveMonthlyAnnual: 49.00
+    annualTotal: 588.00
+  - plan: Enterprise
+    listMonthly: null
+    effectiveMonthlyAnnual: null
+    annualTotal: null
+    contactSales: true
