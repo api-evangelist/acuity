@@ -1,0 +1,83 @@
+vocabulary:
+  provider: Acuity Scheduling
+  baseURL: https://acuityscheduling.com/api/v1/
+  version: "1.1"
+  terms:
+    - term: appointment
+      definition: >
+        A scheduled meeting or session between a client and a business or
+        professional. Contains details such as date, time, duration, client
+        contact information, appointment type, and payment status.
+    - term: appointmentTypeID
+      definition: >
+        Integer identifier for a category of appointment offered by a business,
+        e.g. "60-minute consultation". Used when creating or filtering appointments.
+    - term: calendarID
+      definition: >
+        Integer identifier for a specific calendar (provider/staff member) within
+        an Acuity account.
+    - term: datetime
+      definition: >
+        ISO 8601 formatted date-time string representing the start of an appointment.
+        Parsed using PHP strtotime in the business or calendar timezone.
+    - term: certificate
+      definition: >
+        A package or coupon code that can be applied to an appointment to provide
+        a discount or use a pre-purchased session.
+    - term: fields
+      definition: >
+        An array of intake form field values, each as an object with an "id"
+        (form field ID) and "value" (field value) pair.
+    - term: label
+      definition: >
+        A categorization tag applied to an appointment, with an id, name, and color.
+        Currently only one label per appointment is supported.
+    - term: addonIDs
+      definition: >
+        Array of IDs for add-on services that can add time and extras to an
+        appointment before booking.
+    - term: noShow
+      definition: >
+        Boolean field present on canceled appointments, true if the admin has
+        marked the appointment as a no-show.
+    - term: smsOptIn
+      definition: >
+        Boolean indicating whether the client has explicitly consented to receive
+        SMS appointment reminders. Only applicable when the appointment type requires opt-in.
+    - term: admin
+      definition: >
+        Query parameter (admin=true) that switches API behavior to admin mode,
+        disabling availability validation and allowing additional fields such as
+        notes and certificate to be set. Requires a valid calendarID.
+    - term: webhook
+      definition: >
+        HTTP POST callback sent by Acuity in real-time when appointment lifecycle
+        events occur (created, rescheduled, canceled, etc.). Source CIDRs are
+        available via the /meta endpoint.
+    - term: transactionID
+      definition: >
+        Third-party payment processor transaction identifier returned in payment records.
+    - term: processor
+      definition: >
+        Payment processor used for a transaction. Supported values: stripe, paypal,
+        paypal_pro, braintree (legacy), authorizenet (legacy).
+    - term: meta
+      definition: >
+        Metadata about Acuity services, including the list of IP CIDRs from which
+        webhook requests originate. Does not require authentication.
+    - term: oauth2
+      definition: >
+        Authorization Code OAuth2 flow supported for multi-account integrations,
+        allowing third-party applications to access Acuity accounts on behalf of users.
+    - term: basicAuth
+      definition: >
+        HTTP Basic Authentication using an Acuity User ID as the username and an
+        API Key as the password. The primary authentication method for direct API access.
+    - term: excludeForms
+      definition: >
+        Query parameter that omits intake form data from appointment list responses,
+        improving response speed when form data is not needed.
+    - term: showall
+      definition: >
+        Query parameter that retrieves both scheduled and canceled appointments
+        in a single response.

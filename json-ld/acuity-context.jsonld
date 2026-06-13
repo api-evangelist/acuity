@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "acuity": "https://acuityscheduling.com/api/v1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Appointment": {
+      "@id": "schema:Appointment",
+      "@type": "@id"
+    },
+    "id": "@id",
+    "firstName": "schema:givenName",
+    "lastName": "schema:familyName",
+    "phone": "schema:telephone",
+    "email": {
+      "@id": "schema:email",
+      "@type": "@id"
+    },
+    "datetime": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "schema:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "dateCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "duration": {
+      "@id": "schema:duration",
+      "@type": "xsd:string"
+    },
+    "location": "schema:location",
+    "price": "schema:price",
+    "paid": "acuity:paid",
+    "amountPaid": "acuity:amountPaid",
+    "timezone": "schema:timezone",
+    "notes": "schema:description",
+    "confirmationPage": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "type": "schema:name",
+    "appointmentTypeID": "acuity:appointmentTypeID",
+    "calendarID": "acuity:calendarID",
+    "calendar": "acuity:calendar",
+    "classID": "acuity:classID",
+    "category": "schema:category",
+    "certificate": "acuity:certificate",
+    "addonIDs": "acuity:addonIDs",
+    "canClientCancel": "acuity:canClientCancel",
+    "canClientReschedule": "acuity:canClientReschedule",
+    "noShow": "acuity:noShow",
+    "smsOptIn": "acuity:smsOptIn",
+    "forms": "acuity:forms",
+    "labels": "acuity:labels",
+    "formsText": "acuity:formsText",
+
+    "Payment": {
+      "@id": "schema:MonetaryAmount",
+      "@type": "@id"
+    },
+    "transactionID": "acuity:transactionID",
+    "processor": "acuity:processor",
+    "amount": "schema:price",
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+
+    "Label": {
+      "@id": "acuity:Label",
+      "@type": "@id"
+    },
+    "color": "schema:color",
+
+    "meta": "acuity:meta",
+    "hooks": "acuity:hooks"
+  }
+}

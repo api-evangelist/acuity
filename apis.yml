@@ -14,6 +14,7 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/acuity/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
+
 specificationVersion: "0.19"
 tags:
   - Scheduling
@@ -49,6 +50,16 @@ apis:
         url: https://developers.acuityscheduling.com/
       - type: OpenAPI
         url: https://developers.acuityscheduling.com/llms.txt
+      - type: OpenAPI
+        url: openapi/acuity-scheduling-api-openapi.yml
+      - type: JSONSchema
+        url: json-schema/acuity-appointment.json
+      - type: JSONLDContext
+        url: json-ld/acuity-context.jsonld
+      - type: Vocabulary
+        url: vocabulary/acuity-vocabulary.yml
+      - type: Examples
+        url: examples/acuity-appointment-example.json
 common:
   - type: Website
     url: https://acuityscheduling.com/

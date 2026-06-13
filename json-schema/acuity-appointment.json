@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/acuity/main/json-schema/acuity-appointment.json",
+  "title": "Acuity Appointment",
+  "description": "An appointment record in the Acuity Scheduling system.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique appointment identifier"
+    },
+    "firstName": {
+      "type": "string",
+      "description": "Client first name"
+    },
+    "lastName": {
+      "type": "string",
+      "description": "Client last name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Client phone number"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Client e-mail address"
+    },
+    "date": {
+      "type": "string",
+      "description": "Human-readable appointment date"
+    },
+    "time": {
+      "type": "string",
+      "description": "Human-readable appointment start time"
+    },
+    "endTime": {
+      "type": "string",
+      "description": "Human-readable appointment end time"
+    },
+    "dateCreated": {
+      "type": "string",
+      "description": "Human-readable date the appointment was created"
+    },
+    "datetime": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 appointment start datetime"
+    },
+    "price": {
+      "type": "string",
+      "description": "Appointment price as a decimal string"
+    },
+    "paid": {
+      "type": "string",
+      "description": "Whether the appointment has been paid"
+    },
+    "amountPaid": {
+      "type": "string",
+      "description": "Amount paid as a decimal string"
+    },
+    "type": {
+      "type": "string",
+      "description": "Name of the appointment type"
+    },
+    "appointmentTypeID": {
+      "type": "integer",
+      "description": "ID of the appointment type"
+    },
+    "addonIDs": {
+      "type": "array",
+      "description": "IDs of addons included in the appointment",
+      "items": {
+        "type": "integer"
+      }
+    },
+    "classID": {
+      "type": ["integer", "null"],
+      "description": "Class ID if the appointment is a class booking"
+    },
+    "category": {
+      "type": "string",
+      "description": "Appointment type category"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Duration of the appointment in minutes"
+    },
+    "calendar": {
+      "type": "string",
+      "description": "Name of the calendar"
+    },
+    "calendarID": {
+      "type": "integer",
+      "description": "ID of the calendar"
+    },
+    "canClientCancel": {
+      "type": "boolean",
+      "description": "Whether the client is allowed to cancel this appointment"
+    },
+    "canClientReschedule": {
+      "type": "boolean",
+      "description": "Whether the client is allowed to reschedule this appointment"
+    },
+    "location": {
+      "type": "string",
+      "description": "Location of the appointment"
+    },
+    "certificate": {
+      "type": ["string", "null"],
+      "description": "Package or coupon certificate code applied"
+    },
+    "confirmationPage": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the appointment confirmation page"
+    },
+    "formsText": {
+      "type": "string",
+      "description": "Intake form responses as plain text"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Appointment notes (admin-settable)"
+    },
+    "noShow": {
+      "type": "boolean",
+      "description": "True if the admin has marked this canceled appointment as a no-show"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Client timezone for this appointment"
+    },
+    "forms": {
+      "type": "array",
+      "description": "Intake form data",
+      "items": {
+        "$ref": "#/$defs/AppointmentForm"
+      }
+    },
+    "labels": {
+      "type": "array",
+      "description": "Labels applied to the appointment",
+      "items": {
+        "$ref": "#/$defs/Label"
+      }
+    }
+  },
+  "$defs": {
+    "AppointmentForm": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Form ID"
+        },
+        "name": {
+          "type": "string",
+          "description": "Form name"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string" },
+              "name": { "type": "string" },
+              "fieldID": { "type": "integer" },
+              "id": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "Label": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "color": { "type": "string" }
+      }
+    }
+  }
+}
