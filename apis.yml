@@ -10,7 +10,7 @@ description: >
   a subsidiary of Squarespace and offers SDKs for Node.js and PHP alongside its
   embeddable client scheduler widget.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/acuity/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -35,7 +35,7 @@ apis:
       https://acuityscheduling.com/api/v1/ and all responses are JSON. Webhooks
       allow receiving real-time push notifications for appointment lifecycle
       events.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://developers.acuityscheduling.com/
     baseURL: https://acuityscheduling.com/api/v1/
     tags:
