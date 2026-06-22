@@ -1,19 +1,15 @@
 {
-  "url": "https://www.acuityscheduling.com/learn",
-  "rss": null,
-  "note": "No RSS/Atom feed detected. Blog posts are published at https://www.acuityscheduling.com/learn. Common feed paths (/feed, /rss.xml) return 404 or 500.",
-  "lastChecked": "2026-06-13",
-  "posts": [],
   "repo": "acuity",
   "feeds": [
     {
-      "source": "https://www.linkedin.com/company/acuity-scheduling",
-      "feed_url": "https://www.linkedin.com/company/acuity-scheduling",
-      "title": "",
+      "source": "https://www.acuityscheduling.com/learn",
+      "feed_url": "https://www.acuityscheduling.com/learn",
+      "title": "Acuity Scheduling Learn",
       "saved": 0,
-      "method": "none"
+      "method": "html-scrape",
+      "note": "No RSS/Atom feed; /learn/feed/, /learn/rss/, /learn/feed.xml all return 404. HTML scrape surfaced posts but all predate prior fetch cutoff (2026-06-14)."
     }
   ],
-  "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-21T17:00:00Z",
+  "post_count": 0
 }
