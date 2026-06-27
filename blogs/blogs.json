@@ -3,13 +3,12 @@
   "feeds": [
     {
       "source": "https://www.acuityscheduling.com/learn",
-      "feed_url": "https://www.acuityscheduling.com/learn",
-      "title": "Acuity Scheduling Learn",
-      "saved": 0,
-      "method": "html-scrape",
-      "note": "No RSS/Atom feed; /learn/feed/, /learn/rss/, /learn/feed.xml all return 404. HTML scrape surfaced posts but all predate prior fetch cutoff (2026-06-14)."
+      "feed_url": "",
+      "saved": 1,
+      "method": "agent-scrape"
     }
   ],
-  "fetched": "2026-06-21T17:00:00Z",
-  "post_count": 0
+  "fetched": "2026-06-27T12:21:46Z",
+  "post_count": 1,
+  "agent_pulled": "2026-06-27"
 }
