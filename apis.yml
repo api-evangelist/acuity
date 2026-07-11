@@ -61,6 +61,10 @@ apis:
       - type: Examples
         url: examples/acuity-appointment-example.json
 common:
+  - type: DomainSecurity
+    url: security/acuity-domain-security.yml
+  - type: Authentication
+    url: authentication/acuity-authentication.yml
   - type: OAuthScopes
     url: scopes/acuity-scopes.yml
   - type: Website
