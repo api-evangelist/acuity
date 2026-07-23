@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: Acuity Scheduling Appointments Meta API
+  description: 'The Acuity Scheduling REST API allows developers to programmatically manage appointments, appointment types, availability, client records, calendar integrations, packages, gift certificates, and forms. Authentication is supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2 for multi-account integrations. All responses are JSON. Webhooks allow receiving real-time push notifications for appointment lifecycle events.
+
+    '
+  version: '1.1'
+  contact:
+    url: https://developers.acuityscheduling.com/
+  x-provider: Acuity Scheduling
+  x-subsidiary: Squarespace
+servers:
+- url: https://acuityscheduling.com/api/v1
+  description: Acuity Scheduling API v1
+security:
+- basicAuth: []
+tags:
+- name: Meta
+paths:
+  /meta:
+    get:
+      summary: Get metadata
+      description: Metadata for Acuity services, including webhook origin CIDRs.
+      operationId: get-meta
+      tags:
+      - Meta
+      security: []
+      responses:
+        '200':
+          description: Acuity service metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponse'
+components:
+  schemas:
+    MetaResponse:
+      type: object
+      properties:
+        hooks:
+          type: array
+          description: List of IPv4 or IPv6 CIDRs from which webhooks will originate
+          items:
+            type: string
+            example: 192.0.2.0/24
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Auth using Acuity User ID and API Key
+    oauth2:
+      type: oauth2
+      description: OAuth2 for multi-account integrations
+      flows:
+        authorizationCode:
+          authorizationUrl: https://acuityscheduling.com/oauth2/authorize
+          tokenUrl: https://acuityscheduling.com/oauth2/token
+          scopes:
+            api: Full API access

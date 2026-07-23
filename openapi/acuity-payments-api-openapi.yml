@@ -1,0 +1,103 @@
+openapi: 3.0.3
+info:
+  title: Acuity Scheduling Appointments Payments API
+  description: 'The Acuity Scheduling REST API allows developers to programmatically manage appointments, appointment types, availability, client records, calendar integrations, packages, gift certificates, and forms. Authentication is supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2 for multi-account integrations. All responses are JSON. Webhooks allow receiving real-time push notifications for appointment lifecycle events.
+
+    '
+  version: '1.1'
+  contact:
+    url: https://developers.acuityscheduling.com/
+  x-provider: Acuity Scheduling
+  x-subsidiary: Squarespace
+servers:
+- url: https://acuityscheduling.com/api/v1
+  description: Acuity Scheduling API v1
+security:
+- basicAuth: []
+tags:
+- name: Payments
+paths:
+  /appointments/{id}/payments:
+    get:
+      summary: Get appointment payments
+      description: Retrieve a list of payment transactions for a particular appointment.
+      operationId: get-appointments-id-payments
+      tags:
+      - Payments
+      parameters:
+      - name: id
+        in: path
+        description: Appointment ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: List of payment transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+components:
+  schemas:
+    UnauthorizedError:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: Unauthorized
+        error:
+          type: string
+          example: unauthorized
+    Payment:
+      type: object
+      properties:
+        transactionID:
+          type: string
+          example: pi_123456abcdef
+          description: The 3rd-party processor transaction ID
+        created:
+          type: string
+          format: date-time
+          example: 2016-01-22T09:27:51-0800
+          description: Date the transaction was created
+        processor:
+          type: string
+          example: stripe
+          description: 'Payment processor key: stripe, paypal, paypal_pro, braintree, or authorizenet'
+          enum:
+          - stripe
+          - paypal
+          - paypal_pro
+          - braintree
+          - authorizenet
+        amount:
+          type: string
+          example: '300.00'
+          description: Amount of the processed transaction
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Auth using Acuity User ID and API Key
+    oauth2:
+      type: oauth2
+      description: OAuth2 for multi-account integrations
+      flows:
+        authorizationCode:
+          authorizationUrl: https://acuityscheduling.com/oauth2/authorize
+          tokenUrl: https://acuityscheduling.com/oauth2/token
+          scopes:
+            api: Full API access
