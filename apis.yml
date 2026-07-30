@@ -10,7 +10,20 @@ description: >
   a subsidiary of Squarespace and offers SDKs for Node.js and PHP alongside its
   embeddable client scheduler widget.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/acuity.png
 url: https://raw.githubusercontent.com/api-evangelist/acuity/refs/heads/main/apis.yml
 created: "2026-06-13"
 modified: "2026-06-13"
@@ -24,42 +37,66 @@ tags:
   - HIPAA
   - Webhooks
 apis:
-  - aid: acuity:acuity-scheduling-api
-    name: Acuity Scheduling API
-    description: >
-      The Acuity Scheduling REST API allows developers to programmatically manage
-      appointments, appointment types, availability, client records, calendar
-      integrations, packages, gift certificates, and forms. Authentication is
-      supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2
-      for multi-account integrations. The API base URL is
-      https://acuityscheduling.com/api/v1/ and all responses are JSON. Webhooks
-      allow receiving real-time push notifications for appointment lifecycle
-      events.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://developers.acuityscheduling.com/
-    baseURL: https://acuityscheduling.com/api/v1/
-    tags:
-      - Scheduling
-      - Appointments
-      - Calendar
-      - Booking
-      - Webhooks
-      - OAuth2
-    properties:
-      - type: Documentation
-        url: https://developers.acuityscheduling.com/
-      - type: OpenAPI
-        url: https://developers.acuityscheduling.com/llms.txt
-      - type: OpenAPI
-        url: openapi/acuity-scheduling-api-openapi.yml
-      - type: JSONSchema
-        url: json-schema/acuity-appointment.json
-      - type: JSONLDContext
-        url: json-ld/acuity-context.jsonld
-      - type: Vocabulary
-        url: vocabulary/acuity-vocabulary.yml
-      - type: Examples
-        url: examples/acuity-appointment-example.json
+- aid: acuity:acuity-appointments-api
+  name: Acuity Scheduling Appointments API
+  description: The Appointments API from Acuity Scheduling — 3 operation(s) for appointments.
+  humanURL: https://developers.acuityscheduling.com/
+  baseURL: https://acuityscheduling.com/api/v1/
+  tags:
+  - Appointments
+  properties:
+  - type: OpenAPI
+    url: openapi/acuity-appointments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.acuityscheduling.com/
+  - type: JSONSchema
+    url: json-schema/acuity-appointment.json
+  - type: JSONLDContext
+    url: json-ld/acuity-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/acuity-vocabulary.yml
+  - type: Examples
+    url: examples/acuity-appointment-example.json
+- aid: acuity:acuity-meta-api
+  name: Acuity Scheduling Meta API
+  description: The Meta API from Acuity Scheduling — 1 operation(s) for meta.
+  humanURL: https://developers.acuityscheduling.com/
+  baseURL: https://acuityscheduling.com/api/v1/
+  tags:
+  - Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/acuity-meta-api-openapi.yml
+  - type: Documentation
+    url: https://developers.acuityscheduling.com/
+  - type: JSONSchema
+    url: json-schema/acuity-appointment.json
+  - type: JSONLDContext
+    url: json-ld/acuity-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/acuity-vocabulary.yml
+  - type: Examples
+    url: examples/acuity-appointment-example.json
+- aid: acuity:acuity-payments-api
+  name: Acuity Scheduling Payments API
+  description: The Payments API from Acuity Scheduling — 1 operation(s) for payments.
+  humanURL: https://developers.acuityscheduling.com/
+  baseURL: https://acuityscheduling.com/api/v1/
+  tags:
+  - Payments
+  properties:
+  - type: OpenAPI
+    url: openapi/acuity-payments-api-openapi.yml
+  - type: Documentation
+    url: https://developers.acuityscheduling.com/
+  - type: JSONSchema
+    url: json-schema/acuity-appointment.json
+  - type: JSONLDContext
+    url: json-ld/acuity-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/acuity-vocabulary.yml
+  - type: Examples
+    url: examples/acuity-appointment-example.json
 common:
   - type: AgenticAccess
     url: agentic-access/acuity-agentic-access.yml
