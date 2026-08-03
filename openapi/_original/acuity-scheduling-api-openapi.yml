@@ -1,0 +1,595 @@
+openapi: 3.0.3
+info:
+  title: Acuity Scheduling API
+  description: >
+    The Acuity Scheduling REST API allows developers to programmatically manage
+    appointments, appointment types, availability, client records, calendar
+    integrations, packages, gift certificates, and forms. Authentication is
+    supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2
+    for multi-account integrations. All responses are JSON. Webhooks allow
+    receiving real-time push notifications for appointment lifecycle events.
+  version: "1.1"
+  contact:
+    url: https://developers.acuityscheduling.com/
+  x-provider: Acuity Scheduling
+  x-subsidiary: Squarespace
+servers:
+  - url: https://acuityscheduling.com/api/v1
+    description: Acuity Scheduling API v1
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Auth using Acuity User ID and API Key
+    oauth2:
+      type: oauth2
+      description: OAuth2 for multi-account integrations
+      flows:
+        authorizationCode:
+          authorizationUrl: https://acuityscheduling.com/oauth2/authorize
+          tokenUrl: https://acuityscheduling.com/oauth2/token
+          scopes:
+            api: Full API access
+  schemas:
+    Appointment:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 54321
+        firstName:
+          type: string
+          example: Bob
+        lastName:
+          type: string
+          example: McTest
+        phone:
+          type: string
+          example: ""
+        email:
+          type: string
+          example: bob.mctest@example.com
+        date:
+          type: string
+          example: "July 2, 2013"
+        time:
+          type: string
+          example: "10:15am"
+        endTime:
+          type: string
+          example: "11:15am"
+        dateCreated:
+          type: string
+          example: "June 17, 2013"
+        datetime:
+          type: string
+          format: date-time
+          example: "2013-07-02T10:15:00-0700"
+        price:
+          type: string
+          example: "10.00"
+        paid:
+          type: string
+          example: "no"
+        amountPaid:
+          type: string
+          example: "0.00"
+        type:
+          type: string
+          example: "Regular Visit"
+        appointmentTypeID:
+          type: integer
+          format: int32
+          example: 1
+        addonIDs:
+          type: array
+          items:
+            type: integer
+            format: int32
+        classID:
+          type: integer
+          format: int32
+          nullable: true
+        category:
+          type: string
+          example: ""
+        duration:
+          type: string
+          example: "60"
+        calendar:
+          type: string
+          example: "My Calendar"
+        calendarID:
+          type: integer
+          format: int32
+          example: 27238
+        canClientCancel:
+          type: boolean
+          example: false
+        canClientReschedule:
+          type: boolean
+          example: false
+        location:
+          type: string
+          example: ""
+        certificate:
+          type: string
+          nullable: true
+        confirmationPage:
+          type: string
+          example: "https://acuityscheduling.com/schedule.php?owner=11145481&id[]=1220aa9f41091c50c0cc659385cfa1d0&action=appt"
+        formsText:
+          type: string
+          example: "..."
+        notes:
+          type: string
+          example: "Notes"
+        noShow:
+          type: boolean
+          description: True if admin has marked the canceled appointment as a no-show
+        timezone:
+          type: string
+          example: "America/New_York"
+        forms:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppointmentForm'
+        labels:
+          type: array
+          items:
+            $ref: '#/components/schemas/Label'
+    AppointmentForm:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 1
+        name:
+          type: string
+          example: "Example Intake Form"
+        values:
+          type: array
+          items:
+            type: object
+            properties:
+              value:
+                type: string
+                example: "yes"
+              name:
+                type: string
+                example: "Is this your first visit?"
+              fieldID:
+                type: integer
+                format: int32
+                example: 1
+              id:
+                type: integer
+                format: int32
+                example: 21502993
+    Label:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          example: 3
+        name:
+          type: string
+          example: "Completed"
+        color:
+          type: string
+          example: "pink"
+    FormField:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+          description: Form field ID
+        value:
+          type: string
+          description: Field value; use comma-delimited string for checkboxlist fields
+    Payment:
+      type: object
+      properties:
+        transactionID:
+          type: string
+          example: "pi_123456abcdef"
+          description: The 3rd-party processor transaction ID
+        created:
+          type: string
+          format: date-time
+          example: "2016-01-22T09:27:51-0800"
+          description: Date the transaction was created
+        processor:
+          type: string
+          example: "stripe"
+          description: "Payment processor key: stripe, paypal, paypal_pro, braintree, or authorizenet"
+          enum:
+            - stripe
+            - paypal
+            - paypal_pro
+            - braintree
+            - authorizenet
+        amount:
+          type: string
+          example: "300.00"
+          description: Amount of the processed transaction
+    ErrorResponse:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: "We could not find an available calendar."
+        error:
+          type: string
+          example: "no_available_calendar"
+    UnauthorizedError:
+      type: object
+      properties:
+        status_code:
+          type: integer
+          example: 401
+        message:
+          type: string
+          example: "Unauthorized"
+        error:
+          type: string
+          example: "unauthorized"
+    MetaResponse:
+      type: object
+      properties:
+        hooks:
+          type: array
+          description: List of IPv4 or IPv6 CIDRs from which webhooks will originate
+          items:
+            type: string
+            example: "192.0.2.0/24"
+security:
+  - basicAuth: []
+paths:
+  /appointments:
+    get:
+      summary: List appointments
+      description: Get a list of appointments currently scheduled for the authenticated user.
+      operationId: get-appointments
+      tags:
+        - Appointments
+      parameters:
+        - name: max
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: minDate
+          in: query
+          description: Only get appointments this date and after
+          schema:
+            type: string
+            format: date
+        - name: maxDate
+          in: query
+          description: Only get appointments this date and before
+          schema:
+            type: string
+            format: date
+        - name: calendarID
+          in: query
+          description: Show only appointments on calendar with specified ID
+          schema:
+            type: integer
+            format: int32
+        - name: appointmentTypeID
+          in: query
+          description: Show only appointments of this type
+          schema:
+            type: integer
+            format: int32
+        - name: canceled
+          in: query
+          description: Get canceled appointments (include noShow field in response)
+          schema:
+            type: boolean
+            default: false
+        - name: showall
+          in: query
+          description: Retrieve both canceled and scheduled appointments
+          schema:
+            type: boolean
+            default: false
+        - name: firstName
+          in: query
+          description: Filter appointments for client first name
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          description: Filter appointments for client last name
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: Filter appointments for client e-mail address
+          schema:
+            type: string
+        - name: phone
+          in: query
+          description: "Filter appointments for client phone number. If using a country code, ensure that the '+' is URL encoded to %2b"
+          schema:
+            type: string
+        - name: "field:id"
+          in: query
+          description: "Filter appointments matching a particular custom intake form field e.g. ?field:1234=Hello"
+          schema:
+            type: string
+        - name: excludeForms
+          in: query
+          description: Don't include intake forms in the response object (speeds up the response)
+          schema:
+            type: boolean
+            default: false
+        - name: direction
+          in: query
+          description: Sort direction
+          schema:
+            type: string
+            default: DESC
+            enum:
+              - ASC
+              - DESC
+      responses:
+        '200':
+          description: List of appointments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Appointment'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+    post:
+      summary: Create an appointment
+      description: >
+        Create an appointment. By default, availability and forms are validated
+        as if the appointment is being booked by a client. Use admin=true to
+        disable availability and attribute validations and to allow setting notes.
+      operationId: post-appointments
+      tags:
+        - Appointments
+      parameters:
+        - name: admin
+          in: query
+          description: Book as admin — disables availability and attribute validations, allows setting notes. Requires a valid calendarID in the request body.
+          schema:
+            type: boolean
+            default: false
+        - name: noEmail
+          in: query
+          description: Don't send confirmation e-mails or SMS
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - datetime
+                - appointmentTypeID
+                - firstName
+                - lastName
+                - email
+              properties:
+                datetime:
+                  type: string
+                  description: "Required date and time for the appointment, parsed by strtotime in the business or calendar timezone."
+                  example: "2016-02-03T14:00:00-0800"
+                appointmentTypeID:
+                  type: integer
+                  format: int32
+                  description: Appointment type ID
+                  example: 1
+                calendarID:
+                  type: integer
+                  format: int32
+                  description: "Calendar ID. If not provided, an available calendar will be found automatically."
+                firstName:
+                  type: string
+                  description: Client first name
+                  example: Bob
+                lastName:
+                  type: string
+                  description: Client last name
+                  example: McTest
+                email:
+                  type: string
+                  description: Client e-mail address. Optional for admins.
+                  example: bob.mctest@example.com
+                phone:
+                  type: string
+                  description: Client phone number. May be required in account settings. Optional for admins.
+                timezone:
+                  type: string
+                  description: Client timezone
+                  example: America/New_York
+                certificate:
+                  type: string
+                  description: Package or coupon certificate code
+                fields:
+                  type: array
+                  description: A special field for setting form field values
+                  items:
+                    $ref: '#/components/schemas/FormField'
+                notes:
+                  type: string
+                  description: Settable only when booking as an admin
+                addonIDs:
+                  type: array
+                  description: IDs of addons to be included in the scheduled appointment
+                  items:
+                    type: integer
+                    format: int32
+                labels:
+                  type: array
+                  description: An array of label objects. Currently only accepts an array of length 1.
+                  items:
+                    $ref: '#/components/schemas/Label'
+                smsOptIn:
+                  type: boolean
+                  description: Whether the client has explicitly given permission to receive SMS messages. Only applicable when the appointment type requires opt-in.
+                  default: false
+      responses:
+        '200':
+          description: Created appointment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '400':
+          description: Validation or availability error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /appointments/{id}:
+    put:
+      summary: Update an appointment
+      description: >
+        Update appointment details from a whitelist of updatable attributes.
+        Attributes not included in the request body or not on the whitelist will
+        be ignored. Appointments can be rescheduled and canceled with separate APIs.
+      operationId: put-appointments-id
+      tags:
+        - Appointments
+      parameters:
+        - name: id
+          in: path
+          description: Appointment ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: admin
+          in: query
+          description: Update as admin — allows setting notes and certificate, disables attribute validations.
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  description: Client first name; may not be removed
+                lastName:
+                  type: string
+                  description: Client last name; may not be removed
+                email:
+                  type: string
+                  description: Client email. May not be removed for clients; optional for admins.
+                phone:
+                  type: string
+                  description: Client phone. May not be removed for clients depending on account settings; optional for admins.
+                certificate:
+                  type: string
+                  description: Package or coupon certificate code. May only be set by admins.
+                fields:
+                  type: array
+                  description: A special field for updating form field values
+                  items:
+                    $ref: '#/components/schemas/FormField'
+                notes:
+                  type: string
+                  description: May only be set by admins.
+                labels:
+                  type: array
+                  description: An array of label objects. Currently only accepts an array of length 1.
+                  items:
+                    $ref: '#/components/schemas/Label'
+                smsOptIn:
+                  type: boolean
+                  description: Whether the client has explicitly given permission to receive SMS messages. Omit to leave unchanged.
+                  default: false
+      responses:
+        '200':
+          description: Updated appointment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /appointments/{id}/payments:
+    get:
+      summary: Get appointment payments
+      description: Retrieve a list of payment transactions for a particular appointment.
+      operationId: get-appointments-id-payments
+      tags:
+        - Appointments
+        - Payments
+      parameters:
+        - name: id
+          in: path
+          description: Appointment ID
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: List of payment transactions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Payment'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+  /meta:
+    get:
+      summary: Get metadata
+      description: "Metadata for Acuity services, including webhook origin CIDRs."
+      operationId: get-meta
+      tags:
+        - Meta
+      security: []
+      responses:
+        '200':
+          description: Acuity service metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetaResponse'
