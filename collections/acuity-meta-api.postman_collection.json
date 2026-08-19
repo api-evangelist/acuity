@@ -1,0 +1,123 @@
+{
+  "item": [
+    {
+      "id": "dc265a38-4fd4-47d0-8c37-dac539b3242f",
+      "name": "Meta",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92581be6-499b-4d77-a6fb-2d5c0181323a",
+          "name": "Get metadata",
+          "request": {
+            "name": "Get metadata",
+            "description": {
+              "content": "Metadata for Acuity services, including webhook origin CIDRs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6eee6fdd-2df1-4491-96cb-cad7db1e2cf9",
+              "name": "Acuity service metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hooks\": [\n    \"192.0.2.0/24\",\n    \"192.0.2.0/24\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acuityscheduling.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b9671107-c532-458e-9feb-96fbad4d27ef",
+    "name": "Acuity Scheduling Appointments Meta API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Acuity Scheduling REST API allows developers to programmatically manage appointments, appointment types, availability, client records, calendar integrations, packages, gift certificates, and forms. Authentication is supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2 for multi-account integrations. All responses are JSON. Webhooks allow receiving real-time push notifications for appointment lifecycle events.\n",
+      "type": "text/plain"
+    }
+  }
+}

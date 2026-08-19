@@ -1,0 +1,951 @@
+{
+  "item": [
+    {
+      "id": "aacb83ee-247f-48cd-a0c8-9e19d163c96f",
+      "name": "Appointments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a2c9ad94-2107-47b5-b1d7-5113f0f6537e",
+          "name": "List appointments",
+          "request": {
+            "name": "List appointments",
+            "description": {
+              "content": "Get a list of appointments currently scheduled for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max",
+                  "value": "100",
+                  "description": "Maximum number of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "minDate",
+                  "value": "<date>",
+                  "description": "Only get appointments this date and after"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxDate",
+                  "value": "<date>",
+                  "description": "Only get appointments this date and before"
+                },
+                {
+                  "disabled": false,
+                  "key": "calendarID",
+                  "value": "<integer>",
+                  "description": "Show only appointments on calendar with specified ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "appointmentTypeID",
+                  "value": "<integer>",
+                  "description": "Show only appointments of this type"
+                },
+                {
+                  "disabled": false,
+                  "key": "canceled",
+                  "value": "false",
+                  "description": "Get canceled appointments (include noShow field in response)"
+                },
+                {
+                  "disabled": false,
+                  "key": "showall",
+                  "value": "false",
+                  "description": "Retrieve both canceled and scheduled appointments"
+                },
+                {
+                  "disabled": false,
+                  "key": "firstName",
+                  "value": "<string>",
+                  "description": "Filter appointments for client first name"
+                },
+                {
+                  "disabled": false,
+                  "key": "lastName",
+                  "value": "<string>",
+                  "description": "Filter appointments for client last name"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Filter appointments for client e-mail address"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone",
+                  "value": "<string>",
+                  "description": "Filter appointments for client phone number. If using a country code, ensure that the '+' is URL encoded to %2b"
+                },
+                {
+                  "disabled": false,
+                  "key": "field:id",
+                  "value": "<string>",
+                  "description": "Filter appointments matching a particular custom intake form field e.g. ?field:1234=Hello"
+                },
+                {
+                  "disabled": false,
+                  "key": "excludeForms",
+                  "value": "false",
+                  "description": "Don't include intake forms in the response object (speeds up the response)"
+                },
+                {
+                  "disabled": false,
+                  "key": "direction",
+                  "value": "DESC",
+                  "description": "Sort direction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0abcccd0-e8ca-4ae3-a41b-a22fe35f5f44",
+              "name": "List of appointments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max",
+                      "value": "100"
+                    },
+                    {
+                      "key": "minDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "maxDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "calendarID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "appointmentTypeID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "canceled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "showall",
+                      "value": "false"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field:id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeForms",
+                      "value": "false"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 54321,\n    \"firstName\": \"Bob\",\n    \"lastName\": \"McTest\",\n    \"phone\": \"\",\n    \"email\": \"bob.mctest@example.com\",\n    \"date\": \"July 2, 2013\",\n    \"time\": \"10:15am\",\n    \"endTime\": \"11:15am\",\n    \"dateCreated\": \"June 17, 2013\",\n    \"datetime\": \"2013-07-02T10:15:00-0700\",\n    \"price\": \"10.00\",\n    \"paid\": \"no\",\n    \"amountPaid\": \"0.00\",\n    \"type\": \"Regular Visit\",\n    \"appointmentTypeID\": 1,\n    \"addonIDs\": [\n      8191,\n      8923\n    ],\n    \"classID\": 5457,\n    \"category\": \"\",\n    \"duration\": \"60\",\n    \"calendar\": \"My Calendar\",\n    \"calendarID\": 27238,\n    \"canClientCancel\": false,\n    \"canClientReschedule\": false,\n    \"location\": \"\",\n    \"certificate\": \"string\",\n    \"confirmationPage\": \"https://acuityscheduling.com/schedule.php?owner=11145481&id[]=1220aa9f41091c50c0cc659385cfa1d0&action=appt\",\n    \"formsText\": \"...\",\n    \"notes\": \"Notes\",\n    \"noShow\": false,\n    \"timezone\": \"America/New_York\",\n    \"forms\": [\n      {\n        \"id\": 1,\n        \"name\": \"Example Intake Form\",\n        \"values\": [\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          },\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          }\n        ]\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Example Intake Form\",\n        \"values\": [\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          },\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          }\n        ]\n      }\n    ],\n    \"labels\": [\n      {\n        \"id\": 3,\n        \"name\": \"Completed\",\n        \"color\": \"pink\"\n      },\n      {\n        \"id\": 3,\n        \"name\": \"Completed\",\n        \"color\": \"pink\"\n      }\n    ]\n  },\n  {\n    \"id\": 54321,\n    \"firstName\": \"Bob\",\n    \"lastName\": \"McTest\",\n    \"phone\": \"\",\n    \"email\": \"bob.mctest@example.com\",\n    \"date\": \"July 2, 2013\",\n    \"time\": \"10:15am\",\n    \"endTime\": \"11:15am\",\n    \"dateCreated\": \"June 17, 2013\",\n    \"datetime\": \"2013-07-02T10:15:00-0700\",\n    \"price\": \"10.00\",\n    \"paid\": \"no\",\n    \"amountPaid\": \"0.00\",\n    \"type\": \"Regular Visit\",\n    \"appointmentTypeID\": 1,\n    \"addonIDs\": [\n      4083,\n      2183\n    ],\n    \"classID\": 9085,\n    \"category\": \"\",\n    \"duration\": \"60\",\n    \"calendar\": \"My Calendar\",\n    \"calendarID\": 27238,\n    \"canClientCancel\": false,\n    \"canClientReschedule\": false,\n    \"location\": \"\",\n    \"certificate\": \"string\",\n    \"confirmationPage\": \"https://acuityscheduling.com/schedule.php?owner=11145481&id[]=1220aa9f41091c50c0cc659385cfa1d0&action=appt\",\n    \"formsText\": \"...\",\n    \"notes\": \"Notes\",\n    \"noShow\": false,\n    \"timezone\": \"America/New_York\",\n    \"forms\": [\n      {\n        \"id\": 1,\n        \"name\": \"Example Intake Form\",\n        \"values\": [\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          },\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          }\n        ]\n      },\n      {\n        \"id\": 1,\n        \"name\": \"Example Intake Form\",\n        \"values\": [\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          },\n          {\n            \"value\": \"yes\",\n            \"name\": \"Is this your first visit?\",\n            \"fieldID\": 1,\n            \"id\": 21502993\n          }\n        ]\n      }\n    ],\n    \"labels\": [\n      {\n        \"id\": 3,\n        \"name\": \"Completed\",\n        \"color\": \"pink\"\n      },\n      {\n        \"id\": 3,\n        \"name\": \"Completed\",\n        \"color\": \"pink\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d90207ff-df8d-45c8-8a9f-6db276a7d4d9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max",
+                      "value": "100"
+                    },
+                    {
+                      "key": "minDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "maxDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "calendarID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "appointmentTypeID",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "canceled",
+                      "value": "false"
+                    },
+                    {
+                      "key": "showall",
+                      "value": "false"
+                    },
+                    {
+                      "key": "firstName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lastName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "phone",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field:id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "excludeForms",
+                      "value": "false"
+                    },
+                    {
+                      "key": "direction",
+                      "value": "DESC"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"message\": \"Unauthorized\",\n  \"error\": \"unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2018563-a50d-471b-9bb6-7ae80a2539f0",
+          "name": "Create an appointment",
+          "request": {
+            "name": "Create an appointment",
+            "description": {
+              "content": "Create an appointment. By default, availability and forms are validated as if the appointment is being booked by a client. Use admin=true to disable availability and attribute validations and to allow setting notes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "admin",
+                  "value": "false",
+                  "description": "Book as admin — disables availability and attribute validations, allows setting notes. Requires a valid calendarID in the request body."
+                },
+                {
+                  "disabled": false,
+                  "key": "noEmail",
+                  "value": "false",
+                  "description": "Don't send confirmation e-mails or SMS"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"datetime\": \"<string>\",\n  \"appointmentTypeID\": \"<integer>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"calendarID\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"addonIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"labels\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7f942a4-4f55-4919-89a6-ee45e60f60e4",
+              "name": "Created appointment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "noEmail",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"datetime\": \"2016-02-03T14:00:00-0800\",\n  \"appointmentTypeID\": 1,\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McTest\",\n  \"email\": \"bob.mctest@example.com\",\n  \"calendarID\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"timezone\": \"America/New_York\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"addonIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 54321,\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McTest\",\n  \"phone\": \"\",\n  \"email\": \"bob.mctest@example.com\",\n  \"date\": \"July 2, 2013\",\n  \"time\": \"10:15am\",\n  \"endTime\": \"11:15am\",\n  \"dateCreated\": \"June 17, 2013\",\n  \"datetime\": \"2013-07-02T10:15:00-0700\",\n  \"price\": \"10.00\",\n  \"paid\": \"no\",\n  \"amountPaid\": \"0.00\",\n  \"type\": \"Regular Visit\",\n  \"appointmentTypeID\": 1,\n  \"addonIDs\": [\n    9480,\n    210\n  ],\n  \"classID\": 4636,\n  \"category\": \"\",\n  \"duration\": \"60\",\n  \"calendar\": \"My Calendar\",\n  \"calendarID\": 27238,\n  \"canClientCancel\": false,\n  \"canClientReschedule\": false,\n  \"location\": \"\",\n  \"certificate\": \"string\",\n  \"confirmationPage\": \"https://acuityscheduling.com/schedule.php?owner=11145481&id[]=1220aa9f41091c50c0cc659385cfa1d0&action=appt\",\n  \"formsText\": \"...\",\n  \"notes\": \"Notes\",\n  \"noShow\": true,\n  \"timezone\": \"America/New_York\",\n  \"forms\": [\n    {\n      \"id\": 1,\n      \"name\": \"Example Intake Form\",\n      \"values\": [\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        },\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        }\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Example Intake Form\",\n      \"values\": [\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        },\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        }\n      ]\n    }\n  ],\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ad8ec24-56e7-40db-a8bf-51271f0063ec",
+              "name": "Validation or availability error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "noEmail",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"datetime\": \"2016-02-03T14:00:00-0800\",\n  \"appointmentTypeID\": 1,\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McTest\",\n  \"email\": \"bob.mctest@example.com\",\n  \"calendarID\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"timezone\": \"America/New_York\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"addonIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 400,\n  \"message\": \"We could not find an available calendar.\",\n  \"error\": \"no_available_calendar\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "591b6d13-f80b-4288-b641-6f476f89e865",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "false"
+                    },
+                    {
+                      "key": "noEmail",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"datetime\": \"2016-02-03T14:00:00-0800\",\n  \"appointmentTypeID\": 1,\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McTest\",\n  \"email\": \"bob.mctest@example.com\",\n  \"calendarID\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"timezone\": \"America/New_York\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"addonIDs\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"message\": \"Unauthorized\",\n  \"error\": \"unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2df0fefd-a590-497f-9047-57cbfb2574ac",
+          "name": "Update an appointment",
+          "request": {
+            "name": "Update an appointment",
+            "description": {
+              "content": "Update appointment details from a whitelist of updatable attributes. Attributes not included in the request body or not on the whitelist will be ignored. Appointments can be rescheduled and canceled with separate APIs.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "admin",
+                  "value": "false",
+                  "description": "Update as admin — allows setting notes and certificate, disables attribute validations."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Appointment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"labels\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"color\": \"<string>\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16815fcb-2acb-438a-a7c9-01ce8b770071",
+              "name": "Updated appointment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Appointment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 54321,\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McTest\",\n  \"phone\": \"\",\n  \"email\": \"bob.mctest@example.com\",\n  \"date\": \"July 2, 2013\",\n  \"time\": \"10:15am\",\n  \"endTime\": \"11:15am\",\n  \"dateCreated\": \"June 17, 2013\",\n  \"datetime\": \"2013-07-02T10:15:00-0700\",\n  \"price\": \"10.00\",\n  \"paid\": \"no\",\n  \"amountPaid\": \"0.00\",\n  \"type\": \"Regular Visit\",\n  \"appointmentTypeID\": 1,\n  \"addonIDs\": [\n    9480,\n    210\n  ],\n  \"classID\": 4636,\n  \"category\": \"\",\n  \"duration\": \"60\",\n  \"calendar\": \"My Calendar\",\n  \"calendarID\": 27238,\n  \"canClientCancel\": false,\n  \"canClientReschedule\": false,\n  \"location\": \"\",\n  \"certificate\": \"string\",\n  \"confirmationPage\": \"https://acuityscheduling.com/schedule.php?owner=11145481&id[]=1220aa9f41091c50c0cc659385cfa1d0&action=appt\",\n  \"formsText\": \"...\",\n  \"notes\": \"Notes\",\n  \"noShow\": true,\n  \"timezone\": \"America/New_York\",\n  \"forms\": [\n    {\n      \"id\": 1,\n      \"name\": \"Example Intake Form\",\n      \"values\": [\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        },\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        }\n      ]\n    },\n    {\n      \"id\": 1,\n      \"name\": \"Example Intake Form\",\n      \"values\": [\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        },\n        {\n          \"value\": \"yes\",\n          \"name\": \"Is this your first visit?\",\n          \"fieldID\": 1,\n          \"id\": 21502993\n        }\n      ]\n    }\n  ],\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4905dc17-f479-47c6-9681-fbf5d4076d97",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "admin",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Appointment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phone\": \"<string>\",\n  \"certificate\": \"<string>\",\n  \"fields\": [\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"notes\": \"<string>\",\n  \"labels\": [\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    },\n    {\n      \"id\": 3,\n      \"name\": \"Completed\",\n      \"color\": \"pink\"\n    }\n  ],\n  \"smsOptIn\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"message\": \"Unauthorized\",\n  \"error\": \"unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b079a5d-b29d-464a-9771-7fe76c688e39",
+          "name": "Get appointment payments",
+          "request": {
+            "name": "Get appointment payments",
+            "description": {
+              "content": "Retrieve a list of payment transactions for a particular appointment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "appointments",
+                ":id",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Appointment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01807e85-2b00-498e-9d53-1cd5ca4a695c",
+              "name": "List of payment transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Appointment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"transactionID\": \"pi_123456abcdef\",\n    \"created\": \"2016-01-22T09:27:51-0800\",\n    \"processor\": \"stripe\",\n    \"amount\": \"300.00\"\n  },\n  {\n    \"transactionID\": \"pi_123456abcdef\",\n    \"created\": \"2016-01-22T09:27:51-0800\",\n    \"processor\": \"stripe\",\n    \"amount\": \"300.00\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "456c4554-3451-4e0b-bc24-3b70ceb97ab5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "appointments",
+                    ":id",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Appointment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status_code\": 401,\n  \"message\": \"Unauthorized\",\n  \"error\": \"unauthorized\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acuityscheduling.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b2a053ae-a499-4ec4-b5a6-381cb1a91e2c",
+    "name": "Acuity Scheduling Appointments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Acuity Scheduling REST API allows developers to programmatically manage appointments, appointment types, availability, client records, calendar integrations, packages, gift certificates, and forms. Authentication is supported via HTTP Basic Auth using a User ID and API Key, or via OAuth2 for multi-account integrations. All responses are JSON. Webhooks allow receiving real-time push notifications for appointment lifecycle events.\n",
+      "type": "text/plain"
+    }
+  }
+}

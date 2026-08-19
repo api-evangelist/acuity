@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Acuity Scheduling Appointments API",
+    "version": "1.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Appointments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List appointments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://acuityscheduling.com/api/v1/appointments",
+            "params": [
+              {
+                "name": "max",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "minDate",
+                "value": "",
+                "type": "query",
+                "description": "Only get appointments this date and after"
+              },
+              {
+                "name": "maxDate",
+                "value": "",
+                "type": "query",
+                "description": "Only get appointments this date and before"
+              },
+              {
+                "name": "calendarID",
+                "value": "",
+                "type": "query",
+                "description": "Show only appointments on calendar with specified ID"
+              },
+              {
+                "name": "appointmentTypeID",
+                "value": "",
+                "type": "query",
+                "description": "Show only appointments of this type"
+              },
+              {
+                "name": "canceled",
+                "value": "",
+                "type": "query",
+                "description": "Get canceled appointments (include noShow field in response)"
+              },
+              {
+                "name": "showall",
+                "value": "",
+                "type": "query",
+                "description": "Retrieve both canceled and scheduled appointments"
+              },
+              {
+                "name": "firstName",
+                "value": "",
+                "type": "query",
+                "description": "Filter appointments for client first name"
+              },
+              {
+                "name": "lastName",
+                "value": "",
+                "type": "query",
+                "description": "Filter appointments for client last name"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Filter appointments for client e-mail address"
+              },
+              {
+                "name": "phone",
+                "value": "",
+                "type": "query",
+                "description": "Filter appointments for client phone number. If using a country code, ensure that the '+' is URL encoded to %2b"
+              },
+              {
+                "name": "field:id",
+                "value": "",
+                "type": "query",
+                "description": "Filter appointments matching a particular custom intake form field e.g. ?field:1234=Hello"
+              },
+              {
+                "name": "excludeForms",
+                "value": "",
+                "type": "query",
+                "description": "Don't include intake forms in the response object (speeds up the response)"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              }
+            ]
+          },
+          "docs": "Get a list of appointments currently scheduled for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Create an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acuityscheduling.com/api/v1/appointments",
+            "params": [
+              {
+                "name": "admin",
+                "value": "",
+                "type": "query",
+                "description": "Book as admin — disables availability and attribute validations, allows setting notes. Requires a valid calendarID in the request body."
+              },
+              {
+                "name": "noEmail",
+                "value": "",
+                "type": "query",
+                "description": "Don't send confirmation e-mails or SMS"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an appointment. By default, availability and forms are validated as if the appointment is being booked by a client. Use admin=true to disable availability and attribute validations and to allow setting notes.\n"
+        },
+        {
+          "info": {
+            "name": "Update an appointment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://acuityscheduling.com/api/v1/appointments/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Appointment ID"
+              },
+              {
+                "name": "admin",
+                "value": "",
+                "type": "query",
+                "description": "Update as admin — allows setting notes and certificate, disables attribute validations."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update appointment details from a whitelist of updatable attributes. Attributes not included in the request body or not on the whitelist will be ignored. Appointments can be rescheduled and canceled with separate APIs.\n"
+        },
+        {
+          "info": {
+            "name": "Get appointment payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://acuityscheduling.com/api/v1/appointments/:id/payments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Appointment ID"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of payment transactions for a particular appointment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
