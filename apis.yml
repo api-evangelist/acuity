@@ -35,6 +35,13 @@ tags:
   - Calendar
   - Booking
   - HIPAA
+  - Webhook
+tags_raw:
+  - Scheduling
+  - Appointments
+  - Calendar
+  - Booking
+  - HIPAA
   - Webhooks
 apis:
 - aid: acuity:acuity-appointments-api
